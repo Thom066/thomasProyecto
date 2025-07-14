@@ -1,22 +1,18 @@
-window.addEventListener('hashchange', renderRoute);
-window.addEventListener('DOMContentLoaded', renderRoute);
-
-function renderRoute() {
-  const route = window.location.hash.replace('#', '') || 'dashboard';
-  if (!isAuthenticated() && ['dashboard', 'dashboard/events/create', 'dashboard/events/edit'].includes(route)) {
-    renderNotFound();
-    return;
-  }
-  if (isAuthenticated() && (route === 'login' || route === 'register')) {
-    window.location.hash = 'dashboard';
-    return;
-  }
-  switch (route) {
-    case 'login': renderLogin(); break;
-    case 'register': renderRegister(); break;
-    case 'dashboard': renderDashboard(); break;
-    case 'dashboard/events/create': renderCreateEvent(); break;
-    case 'dashboard/events/edit': renderEditEvent(); break;
-    default: renderNotFound();
-  }
-}
+(function () {
+    const user = JSON.parse(localStorage.getItem("user"));
+    const ruta = window.location.pathname;
+  
+    const rutasProtegidas = ["/dashboard.html"];
+    const rutasPublicas = ["/login.html", "/register.html"];
+  
+    // 1. Usuario NO autenticado quiere entrar a ruta protegida
+    if (!user && rutasProtegidas.includes(ruta)) {
+      window.location.href = "not-found.html";
+    }
+  
+    // 2. Usuario autenticado quiere entrar a login o register
+    if (user && rutasPublicas.includes(ruta)) {
+      window.location.href = "dashboard.html";
+    }
+  })();
+  

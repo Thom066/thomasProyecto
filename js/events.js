@@ -24,3 +24,31 @@ function getEvents(cb) {
     fetch(`http://localhost:3001/events/${id}`, {method: 'DELETE'})
       .then(r => r.json()).then(cb);
   }
+  const API_URL = "http://localhost:3000/events";
+
+export async function obtenerEventos() {
+  const res = await fetch(API_URL);
+  return await res.json();
+}
+
+export async function crearEvento(data) {
+  const res = await fetch(API_URL, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data)
+  });
+  return await res.json();
+}
+
+export async function eliminarEvento(id) {
+  await fetch(`${API_URL}/${id}`, { method: "DELETE" });
+}
+
+export async function actualizarEvento(id, data) {
+  const res = await fetch(`${API_URL}/${id}`, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data)
+  });
+  return await res.json();
+}

@@ -1,12 +1,12 @@
 {
     "users": [
-      {
-        "id": 1,
-        "email": "admin@eventos.com",
-        "password": "admin123",
-        "rol": "admin"
-      }
+      { "id": 1, "email": "admin@eventos.com", "password": "admin", "rol": "admin" },
+      { "id": 2, "email": "juan@correo.com", "password": "1234", "rol": "visitante" }
     ],
-    "events": []
+    "events": [
+      { "id": 1, "titulo": "Expo Tech", "descripcion": "Tecnología e innovación", "fecha": "2025-08-20", "capacidad": 2 }
+    ],
+    "registros": []
   }
+  
   
